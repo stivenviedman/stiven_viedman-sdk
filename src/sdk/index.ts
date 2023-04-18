@@ -7,7 +7,7 @@ class LotrProSdk {
 
   constructor({ token }: { token: string }) {
     if (!token) {
-      throw new Error('A token is required for using LOTR Pro SDK')
+      throw new Error('A token is required for using LOTR Pro SDK');
     }
 
     this.TheOneAPI = axios.create({

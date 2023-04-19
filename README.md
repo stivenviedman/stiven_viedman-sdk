@@ -22,35 +22,33 @@ import { LortProSdk } from "lort-pro-sdk";
 // create an instance by providing a token
 const lps = new LortProSdk({ token: '<your_token_goes_here>' });
 
-// get all movies, also accepts an object query options
+// get all movies, also accepts a query options object
 const movies = await lps.getMovies()
 
 // get a specific movie by id
 const movies = await lps.getMovie('<movie_id>')
 
-// get the quotes of a movie by its id, also accepts an object query options
+// get the quotes of a movie by its id, also accepts a query options object
 const movieQuotes = await lps.getQuotesByMovieId('<movie_id>')
 ```
 
 ### Return types
 
-LTS follows a concise form for the return value of all methods.
+LPS follows a concise form for the return value of all methods.
 
 ```ts
 import { LortProSdk } from "lort-pro-sdk";
 
-/**
- * either data or error will be null. See API section for detailed interfaces
- */
 const lps = new LortProSdk({ token: '<your_token_goes_here>' });
 
+// either data or error will be null. See API section for detailed interfaces
 const { data, error } = await lps.getMovies();
 
 ```
 
 ### Pagination, filtering, and sorting
 
-Methods for querying several entities (getMovies and getQuotesByMovieId) receive a parameter of query options that follow the interface:
+Methods for querying several entities (getMovies and getQuotesByMovieId) receive an optional parameter of query options that follow the interface:
 
 ```ts
 interface LotrQueryOptions {
@@ -77,8 +75,6 @@ interface LotrQueryOptions {
   };
 }
 ```
-
-All of them are optional and you can use it as needed.
 
 Don't worry about magic string or weird types - TPS's got you cover, everything you need is ready to use in the library.
 

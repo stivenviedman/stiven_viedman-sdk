@@ -1,6 +1,6 @@
 {
   "name": "lotr-pro-sdk",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "JS SDK for The One API",
   "scripts": {
     "test": "jest --config jestconfig.json",
@@ -8,7 +8,9 @@
     "format": "prettier --write \"src/**/*.ts\"",
     "lint": "eslint ./src"
   },
-  "files": ["lib/**/*"],
+  "files": [
+    "lib/**/*"
+  ],
   "main": "lib/index.js",
   "types": "lib/index.d.ts",
   "repository": {

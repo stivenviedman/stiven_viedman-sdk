@@ -2,13 +2,15 @@
   "name": "lotr-pro-sdk",
   "version": "1.0.0",
   "description": "JS SDK for The One API",
-  "main": "index.js",
   "scripts": {
     "test": "jest --config jestconfig.json",
     "build": "tsc",
     "format": "prettier --write \"src/**/*.ts\"",
     "lint": "eslint ./src"
   },
+  "files": ["lib/**/*"],
+  "main": "lib/index.js",
+  "types": "lib/index.d.ts",
   "repository": {
     "type": "git",
     "url": "git+https://github.com/stivenviedman/lotr-pro-sdk.git"

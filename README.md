@@ -1,14 +1,12 @@
-# LOTR PRO SKD
-
-## Description
+## LOTR PRO SKD
 
 LOTR PRO SDK - LPS - is a ready to use JS SDK with TS support built on top of [The One API](https://the-one-api.dev/).
 
-LPS is meant to be simple and declarative and complete. So far we cover the endpoint
+LPS is meant to be simple, declarative and complete. It covers the endpoints
 
-- /movie
-- /movie/{id}
-- /movie/{id}/quote
+- `/movie`
+- `/movie/{id}`
+- `/movie/{id}/quote`
 
 ## Installation
 
@@ -24,27 +22,25 @@ import { LortProSdk } from "lort-pro-sdk";
 // create an instance by providing a token
 const lps = new LortProSdk({ token: '<your_token_goes_here>' });
 
-// get all movies
+// get all movies, also accepts an object query options
 const movies = await lps.getMovies()
 
 // get a specific movie by id
 const movies = await lps.getMovie('<movie_id>')
 
-// get the quotes of a movie by its id
+// get the quotes of a movie by its id, also accepts an object query options
 const movieQuotes = await lps.getQuotesByMovieId('<movie_id>')
 ```
 
 ### Return types
 
-LTS provides a standard form in the response of all methods.
+LTS follows a concise form for the return value of all methods.
 
 ```ts
 import { LortProSdk } from "lort-pro-sdk";
 
 /**
- * either data or error will be null
- * and the other one will be an object containing the information you're interested in
- * see API section for detailed interfaces
+ * either data or error will be null. See API section for detailed interfaces
  */
 const lps = new LortProSdk({ token: '<your_token_goes_here>' });
 
@@ -57,27 +53,27 @@ const { data, error } = await lps.getMovies();
 Methods for querying several entities (getMovies and getQuotesByMovieId) receive a parameter of query options that follow the interface:
 
 ```ts
-interface LotrQueryOption {
+interface LotrQueryOptions {
   pagination?: {
     limit?: number;
     page?: number;
     offset?: number;
   };
   sort?: {
-    key: SdkMovieFilterKey | SdkQuoteKey;
+    key: LotrMovieKey | LotrQuoteKey;
     type: 'asc' | 'desc';
   };
   filter?: {
-    [SdkFilterType.match]?: { value: string; key: SdkMovieFilterKey | SdkQuoteKey };
-    [SdkFilterType.negateMatch]?: { value: string; key: SdkMovieFilterKey | SdkQuoteKey };
-    [SdkFilterType.include]?: { value: string[]; key: SdkMovieFilterKey | SdkQuoteKey };
-    [SdkFilterType.exclude]?: { value: string[]; key: SdkMovieFilterKey | SdkQuoteKey };
-    [SdkFilterType.exist]?: { key: SdkMovieFilterKey | SdkQuoteKey };
-    [SdkFilterType.notExist]?: { key: SdkMovieFilterKey | SdkQuoteKey };
-    [SdkFilterType.regex]?: { value: string; key: SdkMovieFilterKey | SdkQuoteKey };
-    [SdkFilterType.lt]?: { value: number; key: SdkMovieFilterKey | SdkQuoteKey };
-    [SdkFilterType.gt]?: { value: number; key: SdkMovieFilterKey | SdkQuoteKey };
-    [SdkFilterType.gte]?: { value: number; key: SdkMovieFilterKey | SdkQuoteKey };
+    [LotrFilterType.match]?: { value: string; key: LotrMovieKey | LotrQuoteKey };
+    [LotrFilterType.negateMatch]?: { value: string; key: LotrMovieKey | LotrQuoteKey };
+    [LotrFilterType.include]?: { value: string[]; key: LotrMovieKey | LotrQuoteKey };
+    [LotrFilterType.exclude]?: { value: string[]; key: LotrMovieKey | LotrQuoteKey };
+    [LotrFilterType.exist]?: { key: LotrMovieKey | LotrQuoteKey };
+    [LotrFilterType.notExist]?: { key: LotrMovieKey | LotrQuoteKey };
+    [LotrFilterType.regex]?: { value: string; key: LotrMovieKey | LotrQuoteKey };
+    [LotrFilterType.lt]?: { value: number; key: LotrMovieKey | LotrQuoteKey };
+    [LotrFilterType.gt]?: { value: number; key: LotrMovieKey | LotrQuoteKey };
+    [LotrFilterType.gte]?: { value: number; key: LotrMovieKey | LotrQuoteKey };
   };
 }
 ```
@@ -87,15 +83,15 @@ All of them are optional and you can use it as needed.
 Don't worry about magic string or weird types - TPS's got you cover, everything you need is ready to use in the library.
 
 ```ts
-import { LortProSdk, LotrQueryOption, SdkMovieFilterKey, SdkQuoteKey } from 'lotr';
+import { LortProSdk, LotrMovieKey } from 'lotr';
 
 const lps = new LortProSdk({ token: '<your_token_goes_here>' });
 
 const { data, error } = await lps.getMovies({
     pagination: { limit: 5 },
-    sort: { type: 'asc', key: SdkMovieFilterKey.name },
+    sort: { type: 'asc', key: LotrMovieKey.name },
     filter: {
-      [SdkFilterType.match]: { key: SdkMovieFilterKey.name, value: 'King' },
+      [SdkFilterType.match]: { key: LotrMovieKey.name, value: 'King' },
     },
 });
 ```

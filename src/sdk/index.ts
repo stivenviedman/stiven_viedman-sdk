@@ -6,7 +6,7 @@ import {
   ToaError,
   ToaSingleMovieResponse,
   ToaQuote,
-  LotrQueryOption,
+  LotrQueryOptions,
 } from '../model';
 
 class LotrProSdk {
@@ -24,7 +24,7 @@ class LotrProSdk {
     });
   }
 
-  public async getMovies(options?: LotrQueryOption): Promise<LotrProResponse<ToaMoviesResponse, ToaError>> {
+  public async getMovies(options?: LotrQueryOptions): Promise<LotrProResponse<ToaMoviesResponse, ToaError>> {
     try {
       const { data } = await this.TheOneAPI.get<ToaMoviesResponse>(`/movie${parseOptions(options)}`);
 
@@ -44,7 +44,10 @@ class LotrProSdk {
     }
   }
 
-  public async getQuotesByMovieId(id: string, options?: LotrQueryOption): Promise<LotrProResponse<ToaQuote, ToaError>> {
+  public async getQuotesByMovieId(
+    id: string,
+    options?: LotrQueryOptions,
+  ): Promise<LotrProResponse<ToaQuote, ToaError>> {
     try {
       const { data } = await this.TheOneAPI.get<ToaQuote>(`/movie/${id}/quote${parseOptions(options)}`);
 

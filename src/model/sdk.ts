@@ -1,32 +1,32 @@
-import { SdkMovieFilterKey, SdkQuoteKey, SdkFilterType } from './enum';
+import { LotrMovieKey, LotrQuoteKey, LotrFilterType } from './enum';
 
 interface LotrProResponse<T, D> {
   data: T | null;
   error: D | null;
 }
 
-interface LotrQueryOption {
+interface LotrQueryOptions {
   pagination?: {
     limit?: number;
     page?: number;
     offset?: number;
   };
   sort?: {
-    key: SdkMovieFilterKey | SdkQuoteKey;
+    key: LotrMovieKey | LotrQuoteKey;
     type: 'asc' | 'desc';
   };
   filter?: {
-    [SdkFilterType.match]?: { value: string; key: SdkMovieFilterKey | SdkQuoteKey };
-    [SdkFilterType.negateMatch]?: { value: string; key: SdkMovieFilterKey | SdkQuoteKey };
-    [SdkFilterType.include]?: { value: string[]; key: SdkMovieFilterKey | SdkQuoteKey };
-    [SdkFilterType.exclude]?: { value: string[]; key: SdkMovieFilterKey | SdkQuoteKey };
-    [SdkFilterType.exist]?: { key: SdkMovieFilterKey | SdkQuoteKey };
-    [SdkFilterType.notExist]?: { key: SdkMovieFilterKey | SdkQuoteKey };
-    [SdkFilterType.regex]?: { value: string; key: SdkMovieFilterKey | SdkQuoteKey };
-    [SdkFilterType.lt]?: { value: number; key: SdkMovieFilterKey | SdkQuoteKey };
-    [SdkFilterType.gt]?: { value: number; key: SdkMovieFilterKey | SdkQuoteKey };
-    [SdkFilterType.gte]?: { value: number; key: SdkMovieFilterKey | SdkQuoteKey };
+    [LotrFilterType.match]?: { value: string; key: LotrMovieKey | LotrQuoteKey };
+    [LotrFilterType.negateMatch]?: { value: string; key: LotrMovieKey | LotrQuoteKey };
+    [LotrFilterType.include]?: { value: string[]; key: LotrMovieKey | LotrQuoteKey };
+    [LotrFilterType.exclude]?: { value: string[]; key: LotrMovieKey | LotrQuoteKey };
+    [LotrFilterType.exist]?: { key: LotrMovieKey | LotrQuoteKey };
+    [LotrFilterType.notExist]?: { key: LotrMovieKey | LotrQuoteKey };
+    [LotrFilterType.regex]?: { value: string; key: LotrMovieKey | LotrQuoteKey };
+    [LotrFilterType.lt]?: { value: number; key: LotrMovieKey | LotrQuoteKey };
+    [LotrFilterType.gt]?: { value: number; key: LotrMovieKey | LotrQuoteKey };
+    [LotrFilterType.gte]?: { value: number; key: LotrMovieKey | LotrQuoteKey };
   };
 }
 
-export { LotrProResponse, LotrQueryOption };
+export { LotrProResponse, LotrQueryOptions };

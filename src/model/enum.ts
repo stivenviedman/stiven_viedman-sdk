@@ -1,4 +1,4 @@
-enum SdkMovieFilterKey {
+enum LotrMovieKey {
   name = 'name',
   runtimeInMinutes = 'runtimeInMinutes',
   budgetInMillions = 'budgetInMillions',
@@ -8,13 +8,13 @@ enum SdkMovieFilterKey {
   rottenTomatoesScore = 'rottenTomatoesScore',
 }
 
-enum SdkQuoteKey {
+enum LotrQuoteKey {
   dialog = 'dialog',
   movie = 'movie',
   character = 'character',
 }
 
-enum SdkFilterType {
+enum LotrFilterType {
   match = 'match',
   negateMatch = 'negateMatch',
   include = 'include',
@@ -27,4 +27,4 @@ enum SdkFilterType {
   gte = 'gte',
 }
 
-export { SdkMovieFilterKey, SdkQuoteKey, SdkFilterType };
+export { LotrMovieKey, LotrQuoteKey, LotrFilterType };

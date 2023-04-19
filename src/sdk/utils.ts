@@ -1,5 +1,5 @@
 import { AxiosError } from 'axios';
-import { ToaError, LotrQueryOption, SdkFilterType } from '../model';
+import { ToaError, LotrQueryOptions, LotrFilterType } from '../model';
 
 const getErrorObject = (error: AxiosError): ToaError => {
   const toaError = (error as AxiosError)?.response?.data as ToaError | undefined;
@@ -11,7 +11,7 @@ const getErrorObject = (error: AxiosError): ToaError => {
   );
 };
 
-const parseOptions = (options?: LotrQueryOption): string => {
+const parseOptions = (options?: LotrQueryOptions): string => {
   let parsedOptions = '';
   const { pagination, sort, filter } = options || {};
 
@@ -32,40 +32,40 @@ const parseOptions = (options?: LotrQueryOption): string => {
   if (filter) {
     for (const filterType in filter) {
       if (Object.prototype.hasOwnProperty.call(filter, filterType)) {
-        const { key, value } = filter[filterType as SdkFilterType] as {
+        const { key, value } = filter[filterType as LotrFilterType] as {
           key: string;
           value: string | number | string[];
         };
 
         switch (filterType) {
-          case SdkFilterType.lt:
+          case LotrFilterType.lt:
             parsedOptions = concatElement(parsedOptions, `${key}<${value}`);
             break;
-          case SdkFilterType.gt:
+          case LotrFilterType.gt:
             parsedOptions = concatElement(parsedOptions, `${key}>${value}`);
             break;
-          case SdkFilterType.gte:
+          case LotrFilterType.gte:
             parsedOptions = concatElement(parsedOptions, `${key}>=${value}`);
             break;
-          case SdkFilterType.match:
+          case LotrFilterType.match:
             parsedOptions = concatElement(parsedOptions, `${key}=${value}`);
             break;
-          case SdkFilterType.negateMatch:
+          case LotrFilterType.negateMatch:
             parsedOptions = concatElement(parsedOptions, `${key}!=${value}`);
             break;
-          case SdkFilterType.include:
+          case LotrFilterType.include:
             parsedOptions = concatElement(parsedOptions, `${key}=${(value as string[]).join()}`);
             break;
-          case SdkFilterType.exclude:
+          case LotrFilterType.exclude:
             parsedOptions = concatElement(parsedOptions, `${key}!=${(value as string[]).join()}`);
             break;
-          case SdkFilterType.notExist:
+          case LotrFilterType.notExist:
             parsedOptions = concatElement(parsedOptions, `${parsedOptions}&!${key}`);
             break;
-          case SdkFilterType.exist:
+          case LotrFilterType.exist:
             parsedOptions = concatElement(parsedOptions, key);
             break;
-          case SdkFilterType.regex:
+          case LotrFilterType.regex:
             parsedOptions = concatElement(parsedOptions, `${key}=${value}`);
             break;
           default:

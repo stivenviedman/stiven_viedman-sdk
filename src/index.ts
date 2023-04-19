@@ -6,9 +6,9 @@ import {
   ToaQuote,
   ToaMovie,
   LotrProResponse,
-  SdkMovieFilterKey,
-  SdkFilterType,
-  SdkQuoteKey,
+  LotrMovieKey,
+  LotrFilterType,
+  LotrQuoteKey,
 } from './model';
 
 export {
@@ -19,7 +19,7 @@ export {
   ToaQuote,
   ToaMovie,
   LotrProResponse,
-  SdkMovieFilterKey,
-  SdkFilterType,
-  SdkQuoteKey,
+  LotrMovieKey,
+  LotrFilterType,
+  LotrQuoteKey,
 };

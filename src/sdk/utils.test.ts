@@ -1,6 +1,6 @@
 import { AxiosError } from 'axios';
 import { getErrorObject, parseOptions } from './utils';
-import { SdkMovieFilterKey, SdkFilterType } from '../model';
+import { LotrMovieKey, LotrFilterType } from '../model';
 
 describe('SDK utils', () => {
   describe('getErrorObject', () => {
@@ -59,7 +59,7 @@ describe('SDK utils', () => {
     it('should parse sort params correctly', () => {
       expect(
         parseOptions({
-          sort: { type: 'asc', key: SdkMovieFilterKey.name },
+          sort: { type: 'asc', key: LotrMovieKey.name },
         }),
       ).toBe('?sort=name:asc');
     });
@@ -68,7 +68,7 @@ describe('SDK utils', () => {
       expect(
         parseOptions({
           pagination: { limit: 10, page: 2, offset: 5 },
-          sort: { type: 'asc', key: SdkMovieFilterKey.name },
+          sort: { type: 'asc', key: LotrMovieKey.name },
         }),
       ).toBe('?limit=10&page=2&offset=5&sort=name:asc');
     });
@@ -77,8 +77,8 @@ describe('SDK utils', () => {
       expect(
         parseOptions({
           filter: {
-            [SdkFilterType.match]: { key: SdkMovieFilterKey.name, value: 'King' },
-            [SdkFilterType.gt]: { key: SdkMovieFilterKey.budgetInMillions, value: 30 },
+            [LotrFilterType.match]: { key: LotrMovieKey.name, value: 'King' },
+            [LotrFilterType.gt]: { key: LotrMovieKey.budgetInMillions, value: 30 },
           },
         }),
       ).toBe('?name=King&budgetInMillions>30');
@@ -88,10 +88,10 @@ describe('SDK utils', () => {
       expect(
         parseOptions({
           pagination: { limit: 10, page: 2, offset: 5 },
-          sort: { type: 'asc', key: SdkMovieFilterKey.name },
+          sort: { type: 'asc', key: LotrMovieKey.name },
           filter: {
-            [SdkFilterType.match]: { key: SdkMovieFilterKey.name, value: 'King' },
-            [SdkFilterType.gt]: { key: SdkMovieFilterKey.budgetInMillions, value: 30 },
+            [LotrFilterType.match]: { key: LotrMovieKey.name, value: 'King' },
+            [LotrFilterType.gt]: { key: LotrMovieKey.budgetInMillions, value: 30 },
           },
         }),
       ).toBe('?limit=10&page=2&offset=5&sort=name:asc&name=King&budgetInMillions>30');

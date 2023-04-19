@@ -10,6 +10,10 @@ LPS is meant to be simple, declarative and complete. It covers the endpoints
 
 ## Installation
 
+LPS is available in the npm registry.
+
+`npm install lotr-pro-sdk`
+
 ## Usage
 
 ### Basic usage

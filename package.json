@@ -15,14 +15,14 @@
   "types": "lib/index.d.ts",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/stivenviedman/lotr-pro-sdk.git"
+    "url": "git+https://github.com/stivenviedman/stiven_viedman-sdk.git"
   },
   "author": "Stiven Viedman",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/stivenviedman/lotr-pro-sdk/issues"
+    "url": "https://github.com/stivenviedman/stiven_viedman-sdk/issues"
   },
-  "homepage": "https://github.com/stivenviedman/lotr-pro-sdk#readme",
+  "homepage": "https://github.com/stivenviedman/stiven_viedman-sdk#readme",
   "devDependencies": {
     "@types/jest": "^29.5.0",
     "@typescript-eslint/eslint-plugin": "^5.59.0",

@@ -1,6 +1,13 @@
 import axios, { AxiosError, AxiosInstance } from 'axios';
-import { getErrorObject } from './utils';
-import { LotrProResponse, ToaMoviesResponse, ToaError, ToaSingleMovieResponse, ToaQuote } from '../model';
+import { getErrorObject, parseOptions } from './utils';
+import {
+  LotrProResponse,
+  ToaMoviesResponse,
+  ToaError,
+  ToaSingleMovieResponse,
+  ToaQuote,
+  LotrQueryOption,
+} from '../model';
 
 class LotrProSdk {
   private readonly TheOneAPI: AxiosInstance;
@@ -17,9 +24,9 @@ class LotrProSdk {
     });
   }
 
-  public async getMovies(): Promise<LotrProResponse<ToaMoviesResponse, ToaError>> {
+  public async getMovies(options?: LotrQueryOption): Promise<LotrProResponse<ToaMoviesResponse, ToaError>> {
     try {
-      const { data } = await this.TheOneAPI.get<ToaMoviesResponse>('/movie');
+      const { data } = await this.TheOneAPI.get<ToaMoviesResponse>(`/movie${parseOptions(options)}`);
 
       return { data, error: null };
     } catch (error) {
@@ -37,9 +44,9 @@ class LotrProSdk {
     }
   }
 
-  public async getQuotesByMovieId(id: string): Promise<LotrProResponse<ToaQuote, ToaError>> {
+  public async getQuotesByMovieId(id: string, options?: LotrQueryOption): Promise<LotrProResponse<ToaQuote, ToaError>> {
     try {
-      const { data } = await this.TheOneAPI.get<ToaQuote>(`/movie/${id}/quote`);
+      const { data } = await this.TheOneAPI.get<ToaQuote>(`/movie/${id}/quote${parseOptions(options)}`);
 
       return { data, error: null };
     } catch (error) {
